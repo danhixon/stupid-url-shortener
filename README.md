@@ -31,7 +31,7 @@ Base62 encoding.  You take a numeric idenfier (base 10) and convert that
 into base 62 (0-9,a-z,A-z).
 
 You set up the redirect host and the resource path with environment variables
-and it exposes a a couple apis that accept the resource id:
+and it exposes a couple apis that accept the resource id:
 
     get /api/url/:id => returns short url
     get /api/short_id/:id => returns shortened id which can be appended to host
