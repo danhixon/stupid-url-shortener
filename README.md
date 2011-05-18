@@ -47,13 +47,19 @@ This lets you configure other short urls to static pages like about:
       '' => '',
       'a' => 'about',
       'biz' => 'business'
+	  'stupid' => 'https://github.com/danhixon/stupid-url-shortener'
     }
 
 /a would redirect to:
-redirect_host/about
+    redirect_host/about
 
 /biz would redirect to:
-redirect_host/business
+    redirect_host/business
+
+/stupid will redirect to:
+    https://github.com/danhixon/stupid-url-shortener
+
+Woah, meta.
 
 What if I needed two types of resources?
 -------------
