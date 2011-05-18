@@ -55,6 +55,12 @@ redirect_host/about
 /biz would redirect to:
 redirect_host/business
 
+What if I needed two types of resources?
+-------------
+
+Use a real url shortener.  Really.
+
+
 Installation
 -------------
 
