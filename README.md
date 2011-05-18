@@ -11,9 +11,11 @@ Stupid, right?
 
 Here is an exampe from twitter:
 
-http://twitter.com/#!/whoever/status/68432368452636674
+    http://twitter.com/#!/whoever/status/68432368452636674
+
 becomes:
-http://localhost:9393/53Q6DmISDS
+
+    http://localhost:9393/53Q6DmISDS
 
 Why?
 -------------
@@ -31,8 +33,8 @@ into base 62 (0-9,a-z,A-z).
 You set up the redirect host and the resource path with environment variables
 and it exposes a a couple apis that accept the resource id:
 
-get /api/url/:id => returns short url
-get /api/short_id/:id => returns shortened id which can be appended to host
+    get /api/url/:id => returns short url
+    get /api/short_id/:id => returns shortened id which can be appended to host
 
 Is that really all?
 --------------
