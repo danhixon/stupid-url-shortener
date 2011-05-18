@@ -20,17 +20,21 @@ class ShortenerTest < Test::Unit::TestCase
     ENV['RESOURCE_NAME']
   end
   context "when someone visits root" do
-    should "be redirected to chatterplug.com/" do
+    should "be redirected to host/" do
       get '/'
       assert_redirected_to "#{redirect_host}/"
     end
   end
   
   Shortener::PATH_MAPS.each do |short, path|
-    context "an anonymous user visits #{short}" do
-      should "be redirected to chatterplug.com/#{path}" do
+    context "when someone visits /#{short} they" do
+      should "be redirected correctly" do
         get "/#{short}"
-        assert_redirected_to "#{redirect_host}/#{path}"
+        if path.start_with?("http")
+          assert_redirected_to path
+        else
+          assert_redirected_to "#{redirect_host}/#{path}"
+        end
       end
     end
   end
@@ -51,25 +55,25 @@ class ShortenerTest < Test::Unit::TestCase
   
   context "the url api" do
     should "return sdD for 210007" do
-      get '/api/short_location/210007'
+      get '/api/short_id/210007'
       assert_equal("sdD",last_response.body)
     end
     # 145017 encodes to biz and that conflicts with the biz path
     should "return !biz for 145017" do
-      get '/api/short_location/145017'
+      get '/api/short_id/145017'
       assert_equal("!biz",last_response.body)
     end
   end
   
   context "the resultant url from the api" do
     should "redirect correctly for 145017" do
-      get '/api/short_location/145017'
+      get '/api/short_id/145017'
       get "/#{last_response.body}"
       assert_redirected_to "#{redirect_host}/#{resource}/145017"
     end
     
     should "redirect correctly for 210007" do
-      get '/api/short_location/210007'
+      get '/api/short_id/210007'
       get "/#{last_response.body}"
       assert_redirected_to "#{redirect_host}/#{resource}/210007"
     end

@@ -7,8 +7,10 @@ require 'sinatra/base'
 class Shortener < Sinatra::Base
   PATH_MAPS = {
     '' => '',
+    'biz' => 'business',
     'a' => 'about',
-    'j' => 'jobs'
+    'j' => 'jobs',
+    'stupid' => 'https://github.com/danhixon/stupid-url-shortener'
   }
   
   # API:
@@ -25,7 +27,7 @@ class Shortener < Sinatra::Base
   # static paths:
   PATH_MAPS.each do |short, long|
     get "/#{short}" do
-      redirect "#{redirect_host}/#{long}"
+      redirect (long=~/https?:/) ? long : "#{redirect_host}/#{long}"
     end
   end
   
